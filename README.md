@@ -8,8 +8,8 @@ End-to-end data pipeline built on Microsoft Fabric for multi-client marketing an
 | Item | Type | Description |
 |---|---|---|
 | `Ingest Data` | Notebook | Fetches raw data from each platform API and saves to bronze |
-| `Notebook 1` | Notebook | Bronze → Silver transformation and upsert |
-| `Notebook 2` | Notebook | Silver → Gold transformation and upsert |
+| `Not Implemented` | Notebook | Bronze → Silver transformation and upsert |
+| `Data parse marketing` | Notebook | Silver → Gold transformation and upsert |
 | `Pipeline_Data` | Pipeline | Orchestrates the full run in sequence |
 | `marketing_clients` | Lakehouse | Stores all bronze files and Delta tables |
 
