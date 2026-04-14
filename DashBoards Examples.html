@@ -1,0 +1,359 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono:wght@500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  .w{font-family:'DM Sans',sans-serif;background:#0d1117;color:#e2e8f0;border-radius:12px;overflow:hidden;min-height:600px}
+  .hdr{background:#161c2d;border-bottom:1px solid #1e2a45;padding:12px 20px;display:flex;align-items:center;gap:12px}
+  .logo{width:26px;height:26px;background:#f5c842;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#0d1117;flex-shrink:0}
+  .htitle{font-size:13px;color:#64748b;font-weight:400}
+  .tabs{display:flex;gap:2px;margin-left:auto}
+  .tab{padding:5px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:#64748b;transition:all .15s;font-family:'DM Sans',sans-serif}
+  .tab.on{background:#f5c842;color:#0d1117}
+  .body{padding:18px 20px}
+  .filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+  .filter-label{font-size:11px;color:#64748b;margin-right:4px}
+  .fbtn{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid #1e2a45;background:transparent;color:#64748b;transition:all .15s;font-family:'DM Sans',sans-serif}
+  .fbtn.on{border-color:transparent;color:#0d1117}
+  .fbtn.meta.on{background:#60a5fa}
+  .fbtn.tiktok.on{background:#f472b6}
+  .fbtn.google.on{background:#f5c842}
+  .fbtn.shopify.on{background:#4ade80}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+  .kpi{background:#161c2d;border:1px solid #1e2a45;border-radius:10px;padding:14px}
+  .kl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+  .kv{font-size:20px;font-weight:500;color:#f1f5f9;font-family:'DM Mono',monospace}
+  .kd{font-size:10px;margin-top:3px}
+  .kd.up{color:#4ade80}.kd.dn{color:#f87171}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+  .card{background:#161c2d;border:1px solid #1e2a45;border-radius:10px;padding:14px}
+  .ct{font-size:11px;font-weight:500;color:#94a3b8;margin-bottom:12px}
+  .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .bl{font-size:10px;color:#64748b;width:82px;text-align:right;flex-shrink:0}
+  .bt{flex:1;height:18px;background:#1e2a45;border-radius:3px;overflow:hidden}
+  .bf{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:500;color:#0d1117;white-space:nowrap}
+  .donut-wrap{display:flex;align-items:center;gap:16px}
+  .dsvg{width:90px;height:90px;flex-shrink:0}
+  .dleg{flex:1;display:flex;flex-direction:column;gap:7px}
+  .li{display:flex;align-items:center;gap:7px;font-size:11px;color:#94a3b8}
+  .ld{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+  .lsvg{width:100%;height:120px}
+  .funnel-step{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .fl{font-size:10px;color:#64748b;width:88px;flex-shrink:0}
+  .ft{flex:1;height:24px;background:#1e2a45;border-radius:3px;overflow:hidden}
+  .ff{height:100%;border-radius:3px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:500}
+  .fp{font-size:10px;color:#64748b;width:36px;text-align:right;font-family:'DM Mono',monospace}
+  .tbl{width:100%;border-collapse:collapse;font-size:11px}
+  .tbl th{color:#64748b;font-weight:400;text-align:left;padding:4px 6px;border-bottom:1px solid #1e2a45}
+  .tbl td{padding:5px 6px;color:#cbd5e1;border-bottom:1px solid #0d1117}
+  .badge{display:inline-flex;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500}
+  .bm{background:#1e3a5f;color:#60a5fa}.bt2{background:#2d1428;color:#f472b6}.bg{background:#1a2e12;color:#4ade80}.by{background:#2e2700;color:#f5c842}
+  .pill{display:inline-flex;padding:1px 6px;border-radius:10px;font-size:10px}
+  .pill-p{background:#1c2f1c;color:#4ade80}.pill-u{background:#2e1a1a;color:#f87171}
+</style>
+<div class="w">
+  <div class="hdr">
+    <div class="logo">M</div>
+    <span class="htitle">Marketing Analytics · Marketing Agency 1</span>
+    <div class="tabs">
+      <button class="tab on" onclick="showTab('paid',this)">Paid Ads</button>
+      <button class="tab" onclick="showTab('organic',this)">Organic</button>
+      <button class="tab" onclick="showTab('combined',this)">Combined</button>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- PAID -->
+    <div id="tab-paid">
+      <div class="filters">
+        <span class="filter-label">Platform</span>
+        <button class="fbtn meta on" onclick="toggleFilter('paid','meta',this)">Meta</button>
+        <button class="fbtn tiktok on" onclick="toggleFilter('paid','tiktok',this)">TikTok</button>
+        <button class="fbtn google on" onclick="toggleFilter('paid','google',this)">Google</button>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kl">Total Spend</div><div class="kv" id="p-spend">$8,420</div><div class="kd up">↑ 12% vs prev.</div></div>
+        <div class="kpi"><div class="kl">ROAS</div><div class="kv" id="p-roas">3.4x</div><div class="kd up">↑ 0.3x vs prev.</div></div>
+        <div class="kpi"><div class="kl">CTR</div><div class="kv" id="p-ctr">2.18%</div><div class="kd dn">↓ 0.4% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Conversions</div><div class="kv" id="p-conv">342</div><div class="kd up">↑ 28 vs prev.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="ct">spend by campaign</div>
+          <div id="paid-campaigns">
+            <div class="bar-row"><span class="bl">Remarketing</span><div class="bt"><div class="bf" style="width:90%;background:#f5c842">$3,100</div></div></div>
+            <div class="bar-row"><span class="bl">Prospecting</span><div class="bt"><div class="bf" style="width:70%;background:#60a5fa">$2,420</div></div></div>
+            <div class="bar-row"><span class="bl">Catalog</span><div class="bt"><div class="bf" style="width:55%;background:#a78bfa">$1,890</div></div></div>
+            <div class="bar-row"><span class="bl">Brand Aware.</span><div class="bt"><div class="bf" style="width:30%;background:#34d399">$1,010</div></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">platform share</div>
+          <div class="donut-wrap">
+            <svg class="dsvg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="36" fill="none" stroke="#1e2a45" stroke-width="14"/>
+              <circle id="pd-meta" cx="50" cy="50" r="36" fill="none" stroke="#60a5fa" stroke-width="14" stroke-dasharray="136 90" stroke-dashoffset="25" transform="rotate(-90 50 50)"/>
+              <circle id="pd-tiktok" cx="50" cy="50" r="36" fill="none" stroke="#f472b6" stroke-width="14" stroke-dasharray="65 161" stroke-dashoffset="-111" transform="rotate(-90 50 50)"/>
+              <circle id="pd-google" cx="50" cy="50" r="36" fill="none" stroke="#f5c842" stroke-width="14" stroke-dasharray="25 201" stroke-dashoffset="-176" transform="rotate(-90 50 50)"/>
+              <text x="50" y="54" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="DM Mono" id="pd-center">$8,420</text>
+            </svg>
+            <div class="dleg">
+              <div class="li" id="pl-meta"><div class="ld" style="background:#60a5fa"></div>Meta 60% ($5,050)</div>
+              <div class="li" id="pl-tiktok"><div class="ld" style="background:#f472b6"></div>TikTok 29% ($2,440)</div>
+              <div class="li" id="pl-google"><div class="ld" style="background:#f5c842"></div>Google 11% ($930)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="ct">conversions funnel</div>
+          <div class="funnel-step"><span class="fl">Impressions</span><div class="ft"><div class="ff" style="width:100%;background:#1e3a5f;color:#60a5fa">386,400</div></div><span class="fp">100%</span></div>
+          <div class="funnel-step"><span class="fl">Clicks</span><div class="ft"><div class="ff" style="width:65%;background:#1e3558;color:#93c5fd">8,400</div></div><span class="fp">2.2%</span></div>
+          <div class="funnel-step"><span class="fl">Landing Views</span><div class="ft"><div class="ff" style="width:40%;background:#272848;color:#a78bfa">5,820</div></div><span class="fp">1.5%</span></div>
+          <div class="funnel-step"><span class="fl">Checkouts</span><div class="ft"><div class="ff" style="width:18%;background:#1a3020;color:#4ade80">1,240</div></div><span class="fp">0.32%</span></div>
+          <div class="funnel-step"><span class="fl">Conversions</span><div class="ft"><div class="ff" style="width:8%;background:#2d2800;color:#f5c842">342</div></div><span class="fp">0.09%</span></div>
+        </div>
+        <div class="card">
+          <div class="ct">daily spend (last 14 days)</div>
+          <svg class="lsvg" viewBox="0 0 280 110" preserveAspectRatio="none">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842" stop-opacity=".25"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,85 L20,75 L40,80 L60,58 L80,63 L100,48 L120,53 L140,38 L160,43 L180,28 L200,33 L220,22 L240,27 L280,15 L280,110 L0,110Z" fill="url(#g1)"/>
+            <path d="M0,85 L20,75 L40,80 L60,58 L80,63 L100,48 L120,53 L140,38 L160,43 L180,28 L200,33 L220,22 L240,27 L280,15" fill="none" stroke="#f5c842" stroke-width="2" stroke-linejoin="round"/>
+            <line x1="0" y1="105" x2="280" y2="105" stroke="#1e2a45" stroke-width="1"/>
+            <text x="0" y="115" fill="#64748b" font-size="8" font-family="DM Sans">Apr 1</text>
+            <text x="245" y="115" fill="#64748b" font-size="8" font-family="DM Sans">Apr 14</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORGANIC -->
+    <div id="tab-organic" style="display:none">
+      <div class="filters">
+        <span class="filter-label">Platform</span>
+        <button class="fbtn meta on" onclick="toggleFilter('org','meta',this)">Meta</button>
+        <button class="fbtn tiktok on" onclick="toggleFilter('org','tiktok',this)">TikTok</button>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kl">Total Reach</div><div class="kv" id="o-reach">124K</div><div class="kd up">↑ 18% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Engagement Rate</div><div class="kv" id="o-eng">4.7%</div><div class="kd up">↑ 0.8% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Total Posts</div><div class="kv" id="o-posts">38</div><div class="kd up">↑ 6 vs prev.</div></div>
+        <div class="kpi"><div class="kl">Total Likes</div><div class="kv" id="o-likes">5,820</div><div class="kd dn">↓ 240 vs prev.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="ct">engagement by type</div>
+          <div id="org-engagement">
+            <div class="bar-row" id="oe-mlikes"><span class="bl">Meta Likes</span><div class="bt"><div class="bf" style="width:80%;background:#60a5fa">3,420</div></div></div>
+            <div class="bar-row" id="oe-mcomm"><span class="bl">Meta Comments</span><div class="bt"><div class="bf" style="width:30%;background:#93c5fd">820</div></div></div>
+            <div class="bar-row" id="oe-tlikes"><span class="bl">TikTok Likes</span><div class="bt"><div class="bf" style="width:70%;background:#f472b6">2,400</div></div></div>
+            <div class="bar-row" id="oe-tcomm"><span class="bl">TikTok Comments</span><div class="bt"><div class="bf" style="width:25%;background:#f9a8d4">640</div></div></div>
+            <div class="bar-row"><span class="bl">Shares</span><div class="bt"><div class="bf" style="width:40%;background:#34d399">1,180</div></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">reach by platform</div>
+          <div class="donut-wrap">
+            <svg class="dsvg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="36" fill="none" stroke="#1e2a45" stroke-width="14"/>
+              <circle id="od-meta" cx="50" cy="50" r="36" fill="none" stroke="#60a5fa" stroke-width="14" stroke-dasharray="136 90" stroke-dashoffset="25" transform="rotate(-90 50 50)"/>
+              <circle id="od-tiktok" cx="50" cy="50" r="36" fill="none" stroke="#f472b6" stroke-width="14" stroke-dasharray="90 136" stroke-dashoffset="-111" transform="rotate(-90 50 50)"/>
+              <text x="50" y="54" text-anchor="middle" fill="#f1f5f9" font-size="10" font-family="DM Mono" id="od-center">124K</text>
+            </svg>
+            <div class="dleg">
+              <div class="li" id="ol-meta"><div class="ld" style="background:#60a5fa"></div>Meta 60% (74.4K)</div>
+              <div class="li" id="ol-tiktok"><div class="ld" style="background:#f472b6"></div>TikTok 40% (49.6K)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="ct">reach over time</div>
+          <svg class="lsvg" viewBox="0 0 280 110" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#60a5fa" stop-opacity=".2"/><stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/></linearGradient>
+              <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f472b6" stop-opacity=".15"/><stop offset="100%" stop-color="#f472b6" stop-opacity="0"/></linearGradient>
+            </defs>
+            <path id="ol-meta-area" d="M0,75 L20,65 L40,80 L60,50 L80,55 L100,40 L120,45 L140,30 L160,35 L180,20 L200,25 L220,15 L240,22 L280,10 L280,110 L0,110Z" fill="url(#g2)"/>
+            <path id="ol-tiktok-area" d="M0,90 L20,80 L40,88 L60,70 L80,75 L100,60 L120,65 L140,52 L160,58 L180,45 L200,50 L220,40 L240,46 L280,35 L280,110 L0,110Z" fill="url(#g3)"/>
+            <path id="ol-meta-line" d="M0,75 L20,65 L40,80 L60,50 L80,55 L100,40 L120,45 L140,30 L160,35 L180,20 L200,25 L220,15 L240,22 L280,10" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linejoin="round"/>
+            <path id="ol-tiktok-line" d="M0,90 L20,80 L40,88 L60,70 L80,75 L100,60 L120,65 L140,52 L160,58 L180,45 L200,50 L220,40 L240,46 L280,35" fill="none" stroke="#f472b6" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 3"/>
+            <line x1="0" y1="105" x2="280" y2="105" stroke="#1e2a45" stroke-width="1"/>
+          </svg>
+          <div style="display:flex;gap:14px;margin-top:4px">
+            <div class="li"><div class="ld" style="background:#60a5fa"></div>Meta</div>
+            <div class="li"><div class="ld" style="background:#f472b6"></div>TikTok</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">top posts by reach</div>
+          <div id="org-posts">
+            <div class="bar-row" id="op1"><span class="bl" style="font-size:9px">Post #1 · Meta</span><div class="bt"><div class="bf" style="width:100%;background:#1e3a5f;color:#60a5fa">18,200</div></div></div>
+            <div class="bar-row" id="op2"><span class="bl" style="font-size:9px">Post #2 · TikTok</span><div class="bt"><div class="bf" style="width:82%;background:#2d1428;color:#f472b6">14,900</div></div></div>
+            <div class="bar-row" id="op3"><span class="bl" style="font-size:9px">Post #3 · Meta</span><div class="bt"><div class="bf" style="width:68%;background:#1e3a5f;color:#60a5fa">12,400</div></div></div>
+            <div class="bar-row" id="op4"><span class="bl" style="font-size:9px">Post #4 · TikTok</span><div class="bt"><div class="bf" style="width:52%;background:#2d1428;color:#f472b6">9,500</div></div></div>
+            <div class="bar-row" id="op5"><span class="bl" style="font-size:9px">Post #5 · Meta</span><div class="bt"><div class="bf" style="width:42%;background:#1e3a5f;color:#60a5fa">7,600</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMBINED -->
+    <div id="tab-combined" style="display:none">
+      <div class="filters">
+        <span class="filter-label">Channel</span>
+        <button class="fbtn meta on" onclick="toggleFilter('comb','meta',this)">Meta</button>
+        <button class="fbtn tiktok on" onclick="toggleFilter('comb','tiktok',this)">TikTok</button>
+        <button class="fbtn google on" onclick="toggleFilter('comb','google',this)">Google</button>
+        <button class="fbtn shopify on" onclick="toggleFilter('comb','shopify',this)">Shopify</button>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kl">Total Revenue</div><div class="kv" id="c-rev">$28,640</div><div class="kd up">↑ 22% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Orders</div><div class="kv" id="c-orders">1,248</div><div class="kd up">↑ 14% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Paid Spend</div><div class="kv" id="c-spend">$8,420</div><div class="kd up">↑ 12% vs prev.</div></div>
+        <div class="kpi"><div class="kl">Blended ROAS</div><div class="kv" id="c-roas">3.4x</div><div class="kd up">↑ 0.3x vs prev.</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="ct">revenue vs spend (daily)</div>
+          <svg class="lsvg" viewBox="0 0 280 110" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ade80" stop-opacity=".2"/><stop offset="100%" stop-color="#4ade80" stop-opacity="0"/></linearGradient>
+              <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842" stop-opacity=".2"/><stop offset="100%" stop-color="#f5c842" stop-opacity="0"/></linearGradient>
+            </defs>
+            <path d="M0,70 L20,60 L40,65 L60,45 L80,50 L100,35 L120,40 L140,25 L160,30 L180,18 L200,22 L220,12 L240,18 L280,8 L280,110 L0,110Z" fill="url(#g4)"/>
+            <path d="M0,88 L20,78 L40,82 L60,62 L80,67 L100,52 L120,57 L140,42 L160,47 L180,32 L200,37 L220,27 L240,32 L280,20 L280,110 L0,110Z" fill="url(#g5)"/>
+            <path d="M0,70 L20,60 L40,65 L60,45 L80,50 L100,35 L120,40 L140,25 L160,30 L180,18 L200,22 L220,12 L240,18 L280,8" fill="none" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M0,88 L20,78 L40,82 L60,62 L80,67 L100,52 L120,57 L140,42 L160,47 L180,32 L200,37 L220,27 L240,32 L280,20" fill="none" stroke="#f5c842" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 3"/>
+            <line x1="0" y1="105" x2="280" y2="105" stroke="#1e2a45" stroke-width="1"/>
+          </svg>
+          <div style="display:flex;gap:14px;margin-top:4px">
+            <div class="li"><div class="ld" style="background:#4ade80"></div>Revenue (Shopify)</div>
+            <div class="li"><div class="ld" style="background:#f5c842"></div>Ad Spend</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">orders by product category</div>
+          <div class="bar-row"><span class="bl">Hogar</span><div class="bt"><div class="bf" style="width:100%;background:#1a2e12;color:#4ade80">488</div></div></div>
+          <div class="bar-row"><span class="bl">Decoración</span><div class="bt"><div class="bf" style="width:72%;background:#1a2e12;color:#4ade80">352</div></div></div>
+          <div class="bar-row"><span class="bl">Textiles</span><div class="bt"><div class="bf" style="width:50%;background:#1a2e12;color:#4ade80">246</div></div></div>
+          <div class="bar-row"><span class="bl">Accesorios</span><div class="bt"><div class="bf" style="width:33%;background:#1a2e12;color:#4ade80">162</div></div></div>
+        </div>
+      </div>
+      <div class="grid3">
+        <div class="card">
+          <div class="ct">e-commerce kpis</div>
+          <div class="bar-row"><span class="bl">AOV</span><div class="bt"><div class="bf" style="width:75%;background:#1e2a45;color:#94a3b8">$22.95</div></div></div>
+          <div class="bar-row"><span class="bl">Conv. Rate</span><div class="bt"><div class="bf" style="width:55%;background:#1e2a45;color:#94a3b8">2.8%</div></div></div>
+          <div class="bar-row"><span class="bl">CPA</span><div class="bt"><div class="bf" style="width:60%;background:#2d2800;color:#f5c842">$24.60</div></div></div>
+          <div class="bar-row"><span class="bl">LTV</span><div class="bt"><div class="bf" style="width:85%;background:#1a2e12;color:#4ade80">$88.40</div></div></div>
+        </div>
+        <div class="card">
+          <div class="ct">channel mix — impressions</div>
+          <div class="donut-wrap" style="flex-direction:column;align-items:flex-start;gap:8px">
+            <svg width="100%" height="60" viewBox="0 0 260 24">
+              <rect x="0" y="4" width="156" height="16" rx="3" fill="#60a5fa"/>
+              <rect x="158" y="4" width="64" height="16" rx="3" fill="#f472b6"/>
+              <rect x="224" y="4" width="26" height="16" rx="3" fill="#f5c842"/>
+              <rect x="0" y="0" width="0" height="0"/>
+            </svg>
+            <div class="dleg" style="flex-direction:row;flex-wrap:wrap;gap:8px">
+              <div class="li"><div class="ld" style="background:#60a5fa"></div>Meta 60%</div>
+              <div class="li"><div class="ld" style="background:#f472b6"></div>TikTok 25%</div>
+              <div class="li"><div class="ld" style="background:#f5c842"></div>Google 10%</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">fulfillment status</div>
+          <div class="bar-row"><span class="bl">Fulfilled</span><div class="bt"><div class="bf" style="width:74%;background:#1a2e12;color:#4ade80">924</div></div></div>
+          <div class="bar-row"><span class="bl">Pending</span><div class="bt"><div class="bf" style="width:18%;background:#2e2700;color:#f5c842">220</div></div></div>
+          <div class="bar-row"><span class="bl">Unfulfilled</span><div class="bt"><div class="bf" style="width:8%;background:#2e1a1a;color:#f87171">104</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct">top products — revenue & ad performance</div>
+        <table class="tbl">
+          <thead><tr><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>ROAS</th><th>Platform</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Silla Nórdica Oak</td><td>214</td><td>$6,420</td><td>$1,840</td><td>3.5x</td><td><span class="badge bm">Meta</span></td><td><span class="pill pill-p">active</span></td></tr>
+            <tr><td>Lámpara Cobre</td><td>186</td><td>$4,880</td><td>$1,200</td><td>4.1x</td><td><span class="badge bt2">TikTok</span></td><td><span class="pill pill-p">active</span></td></tr>
+            <tr><td>Espejo Redondo</td><td>154</td><td>$3,960</td><td>$980</td><td>4.0x</td><td><span class="badge bm">Meta</span></td><td><span class="pill pill-p">active</span></td></tr>
+            <tr><td>Textil Lino Natural</td><td>128</td><td>$2,560</td><td>$1,100</td><td>2.3x</td><td><span class="badge by">Google</span></td><td><span class="pill pill-p">active</span></td></tr>
+            <tr><td>Cojín Boucle</td><td>96</td><td>$1,920</td><td>$640</td><td>3.0x</td><td><span class="badge bt2">TikTok</span></td><td><span class="pill pill-u">draft</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const paidData={meta:{spend:5050,roas:3.8,ctr:2.4,conv:198},tiktok:{spend:2440,roas:2.9,ctr:1.9,conv:108},google:{spend:930,roas:3.1,ctr:2.0,conv:36}};
+const orgData={meta:{reach:74400,eng:5.1,posts:22,likes:3420},tiktok:{reach:49600,eng:4.1,posts:16,likes:2400}};
+const combData={meta:{rev:19200,orders:838,spend:5050},tiktok:{rev:6800,orders:286,spend:2440},google:{rev:2900,orders:124,spend:930},shopify:{rev:28640,orders:1248,spend:0}};
+const state={paid:{meta:true,tiktok:true,google:true},org:{meta:true,tiktok:true},comb:{meta:true,tiktok:true,google:true,shopify:true}};
+
+function toggleFilter(tab,plat,btn){
+  state[tab][plat]=!state[tab][plat];
+  btn.classList.toggle('on');
+  update(tab);
+}
+
+function fmt(n){return n>=1000?'$'+(n/1000).toFixed(1)+'K':'$'+n}
+
+function update(tab){
+  if(tab==='paid'){
+    let spend=0,conv=0,sumSpend=0;
+    const ps=paidData;
+    ['meta','tiktok','google'].forEach(p=>{if(state.paid[p]){spend+=ps[p].spend;conv+=ps[p].conv;sumSpend+=ps[p].spend;}});
+    document.getElementById('p-spend').textContent='$'+spend.toLocaleString();
+    document.getElementById('p-conv').textContent=conv;
+    const avgRoas=spend>0?(spend*3.4/8420*3.4).toFixed(1)+'x':'—';
+    document.getElementById('p-roas').textContent=avgRoas;
+    ['meta','tiktok','google'].forEach(p=>{
+      const el=document.getElementById('pl-'+p);
+      const dc=document.getElementById('pd-'+p);
+      if(el){el.style.opacity=state.paid[p]?'1':'0.25';}
+      if(dc){dc.style.opacity=state.paid[p]?'1':'0';}
+    });
+    document.getElementById('pd-center').textContent='$'+spend.toLocaleString();
+  }
+  if(tab==='org'){
+    let reach=0,posts=0,likes=0;
+    ['meta','tiktok'].forEach(p=>{if(state.org[p]){reach+=orgData[p].reach;posts+=orgData[p].posts;likes+=orgData[p].likes;}});
+    document.getElementById('o-reach').textContent=reach>=1000?(reach/1000).toFixed(1)+'K':reach;
+    document.getElementById('o-posts').textContent=posts;
+    document.getElementById('o-likes').textContent=likes.toLocaleString();
+    ['oe-mlikes','oe-mcomm'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.meta?'1':'0.2';});
+    ['oe-tlikes','oe-tcomm'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.tiktok?'1':'0.2';});
+    ['od-meta','ol-meta'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.meta?'1':'0';});
+    ['od-tiktok','ol-tiktok'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.tiktok?'1':'0';});
+    document.getElementById('od-center').textContent=reach>=1000?(reach/1000).toFixed(0)+'K':reach;
+    ['ol-meta-area','ol-meta-line'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.meta?'1':'0';});
+    ['ol-tiktok-area','ol-tiktok-line'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.tiktok?'1':'0';});
+    ['op1','op3','op5'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.meta?'1':'0.2';});
+    ['op2','op4'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=state.org.tiktok?'1':'0.2';});
+  }
+  if(tab==='comb'){
+    let rev=0,orders=0,spend=0;
+    if(state.comb.shopify){rev=combData.shopify.rev;orders=combData.shopify.orders;}
+    ['meta','tiktok','google'].forEach(p=>{if(state.comb[p]){spend+=combData[p].spend;}});
+    document.getElementById('c-rev').textContent='$'+rev.toLocaleString();
+    document.getElementById('c-orders').textContent=orders.toLocaleString();
+    document.getElementById('c-spend').textContent='$'+spend.toLocaleString();
+    document.getElementById('c-roas').textContent=spend>0?(rev/spend).toFixed(1)+'x':'—';
+  }
+}
+
+function showTab(tab,btn){
+  ['paid','organic','combined'].forEach(t=>document.getElementById('tab-'+t).style.display='none');
+  document.getElementById('tab-'+tab).style.display='block';
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+</script>
